@@ -1,0 +1,37 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: install
+  image: ruby:2.6
+  commands:
+  - gem install bundler
+  - bundle install
+  volumes:
+  - name: bundle
+    path: /usr/local/bundle
+
+- name: lint
+  image: ruby:2.6
+  commands:
+  - bundle exec rubocop
+  volumes:
+  - name: bundle
+    path: /usr/local/bundle
+
+- name: test
+  image: ruby:2.6
+  commands:
+  - bundle exec rspec
+  volumes:
+  - name: bundle
+    path: /usr/local/bundle
+
+volumes:
+- name: bundle
+  temp: {}

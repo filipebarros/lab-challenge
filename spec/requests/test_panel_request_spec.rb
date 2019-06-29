@@ -6,10 +6,10 @@ describe 'Requesting a test panel', type: :request do
   context 'with an invalid test panel ID' do
     let(:test_panel_id) { 'TR1' }
 
-    it 'should respond with an HTTP 200 status' do
+    it 'responds with an HTTP 200 status' do
       get "/test_panels/#{test_panel_id}"
 
-      expect(response).to have_http_status(404)
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -17,16 +17,16 @@ describe 'Requesting a test panel', type: :request do
     let(:test_panel_id) { 'TP1' }
 
     describe 'without query params' do
-      it 'should respond with an HTTP 200 status' do
+      it 'responds with an HTTP 200 status' do
         get "/test_panels/#{test_panel_id}"
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with include query param' do
       describe 'when include is the test model' do
-        it 'should include the `include` section' do
+        it 'includes the `include` section' do
           get "/test_panels/#{test_panel_id}?include=test"
 
           json_body = JSON.parse(response.body)
@@ -35,7 +35,7 @@ describe 'Requesting a test panel', type: :request do
       end
 
       describe 'when include is a random model' do
-        it 'should not include the `include` section' do
+        it 'does not include the `include` section' do
           get "/test_panels/#{test_panel_id}?include=wow"
 
           json_body = JSON.parse(response.body)

@@ -5,11 +5,13 @@ require 'rails_helper'
 describe TestPanel, type: :model do
   let(:id) { 'TP1' }
 
-  it 'should store the data in a DATA constant' do
+  it 'stores the data in a DATA constant' do
     expect(TestPanel::DATA.empty?).not_to eq(true)
   end
 
   describe '.to_jsonapi' do
+    subject(:jsonapi) { described_class.to_jsonapi(id: id, included: included) }
+
     let(:expected) do
       {
         'data': {
@@ -37,8 +39,6 @@ describe TestPanel, type: :model do
         }
       }
     end
-
-    subject(:jsonapi) { described_class.to_jsonapi(id: id, included: included) }
 
     context 'without include parameter' do
       let(:included) { nil }
