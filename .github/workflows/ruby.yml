@@ -1,0 +1,30 @@
+name: Run Tests
+
+on: [push]
+
+jobs:
+  lint-and-specs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: Install bundler
+      run: gem install bundler
+    - name: Setup bundler folder
+      run: bundle config path vendor/bundle
+    - name: Cache Gems
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: lab-challenge-v1-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: lab-challenge-v1-${{ runner.os }}-gem-
+    - name: Install gems
+      run: bundle install --jobs 4 --retry 3
+    - name: Run Rubocop
+      run: bundle exec rubocop --parallel
+    - name: Run Specs
+      run: bundle exec rspec
