@@ -97,7 +97,8 @@ GEM
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    puma (3.12.1)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     rack (2.0.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -194,7 +195,7 @@ DEPENDENCIES
   haml-rails
   highlight
   listen (>= 3.0.5, < 3.2)
-  puma (~> 3.11)
+  puma (~> 4.3)
   rails (~> 5.2.0)
   rspec-rails
   rubocop
