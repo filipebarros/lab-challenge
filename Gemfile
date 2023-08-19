@@ -8,7 +8,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haml-rails'
 gem 'highlight'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.6'
 gem 'rails', '~> 5.2.0'
 
 group :development, :test do

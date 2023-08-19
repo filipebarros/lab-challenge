@@ -91,14 +91,14 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.18.0)
     msgpack (1.3.0)
-    nio4r (2.3.1)
+    nio4r (2.5.9)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    puma (4.3.12)
+    puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -197,7 +197,7 @@ DEPENDENCIES
   haml-rails
   highlight
   listen (>= 3.0.5, < 3.2)
-  puma (~> 4.3)
+  puma (~> 5.6)
   rails (~> 5.2.0)
   rspec-rails
   rubocop
